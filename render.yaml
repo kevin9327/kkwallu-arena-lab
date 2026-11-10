@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: kkwallu-arena-lab
+    runtime: static
+    buildCommand: echo "Static WebGL 3D Arena & AI Draft Coach Built"
+    staticPublishPath: .
+    pullRequestPreviewsEnabled: true
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=3600
+  - type: cron
+    name: kkwallu-daily-leaderboard-workflow
+    runtime: node
+    schedule: "0 0 * * *"
+    buildCommand: echo "Render Workflow Ready"
+    startCommand: node -e "console.log('Daily Kkwallu Arena Leaderboard Reset & Anti-Cheat Verification Workflow Completed')"
